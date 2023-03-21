@@ -1,67 +1,37 @@
-// Function to handle login form submission
-function handleLoginFormSubmit(event) {
-    event.preventDefault(); // Prevent default form submission
+// Get a reference to the login form
+const loginForm = document.getElementById("/login");
+
+// Add an event listener for when the login form is submitted
+loginForm.addEventListener("submit", function(event) {
+  // Get references to the username and password input fields
+  const usernameInput = document.getElementById("login-username");
+  const passwordInput = document.getElementById("login-password");
   
-    // Get the form data
-    const username = document.getElementById('login-username').value;
-    const password = document.getElementById('login-password').value;
-  
-    // Send the form data to the server using AJAX
-    fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: username,
-        password: password
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      // Handle response from server
-      console.log(data);
-    })
-    .catch(error => {
-      console.error(error);
-    });
+  // Check that both fields are non-empty; if either is empty, prevent the form from submitting and display an error message
+  if (!usernameInput.value || !passwordInput.value) {
+    event.preventDefault();
+    alert("Please enter both a username and password");
   }
+});
+
+// Get a reference to the sign up form
+const signUpForm = document.getElementById("/signup");
+
+// Add an event listener for when the sign up form is submitted
+signUpForm.addEventListener("submit", function(event) {
+  // Prevent the form from submitting
+  event.preventDefault();
   
-  // Function to handle sign up form submission
-  function handleSignupFormSubmit(event) {
-    event.preventDefault(); // Prevent default form submission
+  // Get references to the sign up container, avatar, and confirmation message elements
+  const signUpContainer = document.querySelector(".container");
+  const signUpAvatar = document.querySelector(".avatar");
+  const confirmationMessage = document.createElement("p");
   
-    // Get the form data
-    const username = document.getElementById('signup-username').value;
-    const email = document.getElementById('signup-email').value;
-    const password = document.getElementById('signup-password').value;
+  // Set the text content of the confirmation message
+  confirmationMessage.textContent = "Thank you for signing up!";
   
-    // Send the form data to the server using AJAX
-    fetch('/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: username,
-        email: email,
-        password: password
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      // Handle response from server
-      console.log(data);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }
-  
-  // Attach event listeners to forms
-  const loginForm = document.getElementById('login-form');
-  const signupForm = document.getElementById('signup-form');
-  
-  loginForm.addEventListener('submit', handleLoginFormSubmit);
-  signupForm.addEventListener('submit', handleSignupFormSubmit);
-  
+  // Remove the avatar and form from the sign up container, and add the confirmation message
+  signUpContainer.removeChild(signUpAvatar);
+  signUpContainer.removeChild(signUpForm);
+  signUpContainer.appendChild(confirmationMessage);
+});
