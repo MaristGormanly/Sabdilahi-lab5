@@ -1,5 +1,5 @@
 // Get a reference to the login form
-const loginForm = document.getElementById("/login");
+const loginForm = document.getElementById("login-form");
 
 // Add an event listener for when the login form is submitted
 loginForm.addEventListener("submit", function(event) {
@@ -15,18 +15,13 @@ loginForm.addEventListener("submit", function(event) {
 });
 
 // Get a reference to the sign up form
-const signUpForm = document.getElementById("/signup");
+const signUpForm = document.getElementById("signup-form");
 
 // Add an event listener for when the sign up form is submitted
 signUpForm.addEventListener("submit", function(event) {
   // Prevent the form from submitting
   event.preventDefault();
-  
-  // Get references to the sign up container, avatar, and confirmation message elements
-  const signUpContainer = document.querySelector(".container");
-  const signUpAvatar = document.querySelector(".avatar");
-  const confirmationMessage = document.createElement("p");
-  
+
   // Set the text content of the confirmation message
   confirmationMessage.textContent = "Thank you for signing up!";
   
