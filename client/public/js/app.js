@@ -1,8 +1,9 @@
 // Get a reference to the login form
-const loginForm = document.getElementById("login-form");
+const loginForm = document.getElementById("submit-button");
 
 // Add an event listener for when the login form is submitted
-loginForm.addEventListener("submit", function (event) {
+loginForm.addEventListener("click", function (event) {
+  console.log(1);
   // Get references to the username and password input fields
   const usernameInput = document.getElementById("login-username");
   const passwordInput = document.getElementById("login-password");
@@ -16,11 +17,12 @@ loginForm.addEventListener("submit", function (event) {
     alert("Login successful! Welcome, " + usernameInput.value);
   }
 });
+console.log(0);
 
 // Get a reference to the sign up form
-const signUpForm = document.getElementById("signup-form");
+const signUpForm = document.getElementById("submit-button");
 
-signUpForm.addEventListener("submit", function (event) {
+signUpForm.addEventListener("click", function (event) {
   event.preventDefault();
 
   // Get references to the input fields
