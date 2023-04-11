@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
-
-// Middleware for parsing request body as JSON
-app.use(express.json());
+var userRoutes = require('./route/userRoutes');
+app.use('/api/user', userRoutes);
+//app.use(bodyParse.json({type:'application.json'}));
 
 // Serve static files from the "client/public" directory
 app.use(express.static('client/public'));
