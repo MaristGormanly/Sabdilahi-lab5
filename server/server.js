@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 var userRoutes = require('./route/userRoutes');
 app.use('/api/user', userRoutes);
-//app.use(bodyParse.json({type:'application.json'}));
+const bodyParser = require('body-parser');
+app.use(bodyParser.json({type:'application.json'}));
 
 // Serve static files from the "client/public" directory
 app.use(express.static('client/public'));
