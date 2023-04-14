@@ -1,9 +1,10 @@
 const express = require('express');
+var bodyParser = require('body-parser');
 const app = express();
 var userRoutes = require('./route/userRoutes');
-app.use('/api/user', userRoutes);
-const bodyParser = require('body-parser');
-app.use(bodyParser.json({type:'application.json'}));
+
+app.use(bodyParser.json({type:'application/json'}));
+
 
 // Serve static files from the "client/public" directory
 app.use(express.static('client/public'));
@@ -28,3 +29,4 @@ app.get('/', function(req, res) {
 app.listen(1337, function() {
   console.log('Marist Chatter listening on port 1337!');
 });
+app.use('/api/user', userRoutes);

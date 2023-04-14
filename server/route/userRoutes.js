@@ -10,7 +10,7 @@ module.exports = router;
 // all users routes
 router.route('/')
 .get( ( req, res ) => {
-userController.getUsers( req, res );
+userController.getAllUsers( req, res );
 })
 .post( ( req, res ) => {
 userController.saveUser( req, res );
@@ -21,7 +21,11 @@ router.route('/:index')
 .get( ( req, res ) => {
 userController.getUser( req, res );
 }
-);
+)
+.delete((req, res) => {
+    userController.deleteUser(req, res);
+  }
+  );
 
   
 
