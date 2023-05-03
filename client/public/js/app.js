@@ -14,7 +14,7 @@ loginForm.addEventListener("submit", function (event) {
     alert("Please enter both a username and password");
   } else {
     window.location.href = "/feed";
-    
+
   }
 });
 
@@ -41,65 +41,73 @@ function redirectToFeed() {
   window.location.href = "feed";
 }
 
-// Fetch all users
-function getAllUsers() {
-  fetch('http://localhost:1337/api/user')
-    .then(function (response) {
-      if (response.status !== 200) {
-        console.log('Problem with the fetch call! Status: ' + response.status);
-        return;
+document.addEventListener('DOMContentLoaded', () => {
+  const postForm = document.getElementById('post-form');
+  const postsContainer = document.getElementById('posts-container');
+
+  // // Function to create a new post
+  // const createPost = async (title, body) => {
+  //   try {
+  //     const response = await fetch('/api/posts', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ title, body }),
+  //     });
+  //     if (response.ok) {
+  //       console.log('Post created successfully');
+  //       // Clear the form fields
+  //       document.getElementById('post-title').value = '';
+  //       document.getElementById('post-body').value = '';
+  //       // Refresh the posts
+  //       fetchPosts();
+  //     } else {
+  //       console.error('Failed to create post');
+  //     }
+  //   } catch (error) {
+  //     console.error('An error occurred:', error);
+  //   }
+  // };
+
+  // Function to fetch all posts and display them
+  const fetchPosts = async () => {
+    try {
+      const response = await fetch('/api/posts');
+      if (response.ok) {
+        const posts = await response.json();
+        // Clear the posts container
+        postsContainer.innerHTML = '';
+        // Append each post to the container
+        posts.forEach((post) => {
+          const postElement = document.createElement('div');
+          postElement.classList.add('post');
+          postElement.innerHTML = `
+            <h3 class="post__title">${post.title}</h3>
+            <p class="post__body">${post.body}</p>
+          `;
+          postsContainer.appendChild(postElement);
+        });
+      } else {
+        console.error('Failed to fetch posts');
       }
-      response.json().then(function (data) {
-        var userHtml = "";
-        for (var i in data) {
-          userHtml += "<li id='" + data[i].id + "'>" + data[i].email + "</li>";
-        }
-        document.getElementById('users').innerHTML = userHtml;
-      });
-    })
-    .catch(function (error) {
-      console.log('Error fetching users: ', error);
-    });
-}
-// Create a new post
-function createPost(title, body) {
-  const post = {
-    title: title,
-    body: body
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
   };
 
-  fetch('http://localhost:1337/api/post', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(post)
-  })
-    .then(function (response) {
-      if (response.status !== 201) {
-        console.log('Problem with the fetch call! Status: ' + response.status);
-        return;
-      }
-      console.log('Post created successfully!');
-    })
-    .catch(function (error) {
-      console.log('Error creating post: ', error);
-    });
-}
+  // Event listener for form submission
+  postForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const title = document.getElementById('post-title').value;
+    const body = document.getElementById('post-body').value;
+    await createPost(title, body);
+  });
 
-/* // Delete a post
-function deletePost(postId) {
-  fetch(`/api/posts/${postId}`, {
-    method: 'DELETE'
-  })
-    .then(function (response) {
-      if (response.status !== 200) {
-        console.log('Problem with the fetch call! Status: ' + response.status);
-        return;
-      }
-      console.log('Post deleted successfully!');
-    })
-    .catch(function (error) {
-      console.log('Error deleting post: ', error);
-    });
-} */
+  // Fetch and display the initial posts
+  fetchPosts();
+});
+
+
+
+

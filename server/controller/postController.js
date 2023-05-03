@@ -43,7 +43,7 @@ exports.getPost = function(req, res) {
 // Define a controller function to update a post by index
 exports.updatePost = function(req, res) {
   // Get the index of the post to update from the request parameters
-  const index = req.params.index;
+  var index = req.params.index;
 
   // Check if the index is valid
   if (index >= 0 && index < posts.length) {

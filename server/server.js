@@ -31,13 +31,9 @@ app.get('/', function(req, res) {
   res.sendFile('home.html', { root: './client/views' });
 });
 
-//Define the routes
-// app.use('/api/user', userRoutes);
-// app.get('/api/post', postController.getAllPosts);
-// app.post('/api/post', postController.createPost);
-// app.get('/api/post/:index', postController.getPost);
-// app.patch('/api/post/:index', postController.updatePost);
-// app.delete('/api/post/:index', postController.deletePost); 
+// Define the routes
+app.use('/api/user', userRoutes);
+app.use('/api/post', postRoutes);
 
 // Start the server
 app.listen(1337, function() {
