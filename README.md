@@ -21,14 +21,18 @@ git clone your git repository
 
 1: Repo creation and clone
 The project should have the following:
+
 a. A .gitignore for Node.js (A good model is the agora one)
+
 b. A README
-c. A license (MIT or BSD is recommended, feel free to research some of the others
-and pick one you feel appropriate).
+
+c. A license (MIT or BSD is recommended, feel free to research some of the others and pick one you feel appropriate).
+
 3. Clone the repository to your development machine
-4. Initialize your project with npm init
-5. 
-6.Step 3: .env and .env.example
+
+5. Initialize your project with npm init
+
+7.Step 3: .env and .env.example
 Make a copy of the .env.example file called .env in the project home directory
 
 change these to the folllowing:
