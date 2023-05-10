@@ -4,6 +4,7 @@ SomTech: A Social Media Platform User Guide
 
 Welcome to SomTech, a social media platform that allows you to connect and message with others through login and signup information. 
 With SomTech, you can easily keep in touch with friends, family, and colleagues.
+However, it is currently in a static state and has yet to achieve its full potential.
 
 Getting Started
 
