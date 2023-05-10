@@ -12,6 +12,9 @@ router.route('/')
   })
   .post((req, res) => {
     userController.saveUser(req, res);
+  })
+  .put((req, res) => {
+    userController.updateUser(req, res);
   });
 
 // Route for getting a specific user by index
@@ -22,8 +25,12 @@ router.route('/:index')
   .delete((req, res) => {
     userController.deleteUser(req, res);
   })
+  .put((req, res) => {
+    userController.updateUser(req, res);
+  })
 
   .patch((req, res) => {
-    userController.updateUser(req, res);
+    userController.partialupdateUser(req, res);
   });
+  module.exports = router;
 

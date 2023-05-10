@@ -1,11 +1,13 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 const app = express();
-const userRoutes = require('./route/userRoutes');
-const postRoutes = require('./route/postRoutes');
-const postController = require('./controller/postController');
-
 app.use(bodyParser.json({ type: 'application/json' }));
+
+// Require the database connection module
+// var db = require('./db/DATABASE');
+
+// Connect to the database
+// db.connect();
 
 // Serve static files from the "client/public" directory
 app.use(express.static('client/public'));
@@ -32,8 +34,12 @@ app.get('/', function(req, res) {
 });
 
 // Define the routes
+let userRoutes = require('./route/userRoutes');
 app.use('/api/user', userRoutes);
+
+let postRoutes = require('./route/postRoutes');
 app.use('/api/post', postRoutes);
+
 
 // Start the server
 app.listen(1337, function() {
